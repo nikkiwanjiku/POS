@@ -3,14 +3,15 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from repositories.user_repository import user_repository
-from schemas.user import UserCreate, UserUpdate
+from pos.core.security import hash_password
+from pos.repositories.user_repository import user_repository
+from pos.schemas.user import UserCreate, UserUpdate
 
 
 class UserService:
 
     def get_user(self, db:Session, id:UUID):
-        user=user_repository.get(db,id)
+        user=user_repository.get_by_id(db,id)
         if not user:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="User not found")
         return user
@@ -27,7 +28,7 @@ class UserService:
 
         user_data = data.model_dump()
         password = user_data.pop("password")
-        user_data["password_hash"] = password  # stored as-is, no hashing
+        user_data["password_hash"] = hash_password(password)
 
         return user_repository.create(db,user_data)
 
@@ -38,7 +39,7 @@ class UserService:
 
         update_data = data.model_dump(exclude_unset=True)
         if "password" in update_data:
-            update_data["password_hash"] = update_data.pop("password")
+            update_data["password_hash"] = hash_password(update_data.pop("password"))
 
         return user_repository.update(db,user,update_data)
 
