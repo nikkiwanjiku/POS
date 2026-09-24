@@ -30,3 +30,6 @@ htmlcov/
 
 # Operating system files
 .DS_Store
+
+# Legacy duplicate project directory
+/POS/
