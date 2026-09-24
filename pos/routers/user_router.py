@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from database import get_db
-from schemas.user import UserCreate, UserUpdate, UserResponse
-from services.user_service import user_service
+from pos.database import get_db
+from pos.schemas.user import UserCreate, UserUpdate, UserResponse
+from pos.services.user_service import user_service
 
 
 router = APIRouter(prefix="/users", tags=["Users"])

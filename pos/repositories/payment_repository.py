@@ -2,7 +2,7 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from models.payment import Payment
+from pos.models.payment import Payment
 
 
 class PaymentRepository:

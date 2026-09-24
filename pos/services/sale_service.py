@@ -3,8 +3,8 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from repositories.sale_repository import sale_repository
-from schemas.sale import SaleCreate, SaleUpdate
+from pos.repositories.sale_repository import sale_repository
+from pos.schemas.sale import SaleCreate, SaleUpdate
 
 
 class SaleService:

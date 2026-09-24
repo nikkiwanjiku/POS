@@ -3,15 +3,15 @@ from uuid import UUID
 from fastapi import APIRouter,Depends,status
 from sqlalchemy.orm import Session
 
-from database import get_db
+from pos.database import get_db
 
-from schemas.sale_item import (
+from pos.schemas.sale_item import (
     SaleItemCreate,
     SaleItemUpdate,
     SaleItemResponse
 )
 
-from services.sale_item_service import sale_item_service
+from pos.services.sale_item_service import sale_item_service
 
 
 

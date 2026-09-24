@@ -1,8 +1,8 @@
 from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from repositories.category_repository import category_repository
-from schemas.category import CategoryCreate, CategoryUpdate
+from pos.repositories.category_repository import category_repository
+from pos.schemas.category import CategoryCreate, CategoryUpdate
 
 
 class CategoryService:

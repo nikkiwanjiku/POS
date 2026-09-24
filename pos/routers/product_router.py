@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from database import get_db
-from schemas.product import ProductCreate, ProductUpdate, ProductResponse
-from services.product_service import product_service
+from pos.database import get_db
+from pos.schemas.product import ProductCreate, ProductUpdate, ProductResponse
+from pos.services.product_service import product_service
 
 
 router = APIRouter(prefix="/products", tags=["Products"])

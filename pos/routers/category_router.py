@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from database import get_db
-from schemas.category import CategoryCreate, CategoryUpdate, CategoryResponse
-from services.category_service import category_service
+from pos.database import get_db
+from pos.schemas.category import CategoryCreate, CategoryUpdate, CategoryResponse
+from pos.services.category_service import category_service
 
 
 router = APIRouter(prefix="/categories", tags=["Categories"])

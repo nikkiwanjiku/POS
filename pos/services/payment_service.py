@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import HTTPException,status
 from sqlalchemy.orm import Session
 
-from repositories.payment_repository import payment_repository
-from repositories.sale_repository import sale_repository
-from schemas.payment import PaymentCreate, PaymentUpdate
+from pos.repositories.payment_repository import payment_repository
+from pos.repositories.sale_repository import sale_repository
+from pos.schemas.payment import PaymentCreate, PaymentUpdate
 
 
 class PaymentService:

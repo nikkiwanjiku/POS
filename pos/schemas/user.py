@@ -28,6 +28,7 @@ class UserResponse(BaseModel):
     username: str
     user_email: EmailStr | None
     role: str
+    is_active: bool
 
     class Config:
         from_attributes = True

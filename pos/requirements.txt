@@ -44,3 +44,7 @@ uvicorn==0.51.0
 uvloop==0.22.1
 watchfiles==1.2.0
 websockets==16.1
+
+# Authentication and password hashing
+PyJWT==2.13.0
+pwdlib==0.3.1

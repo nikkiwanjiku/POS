@@ -2,7 +2,7 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from models.supplier import Supplier
+from pos.models.supplier import Supplier
 
 
 class SupplierRepository:

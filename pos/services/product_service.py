@@ -3,8 +3,8 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from repositories.product_repository import product_repository
-from schemas.product import ProductCreate, ProductUpdate
+from pos.repositories.product_repository import product_repository
+from pos.schemas.product import ProductCreate, ProductUpdate
 
 
 class ProductService:

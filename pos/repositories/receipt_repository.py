@@ -2,7 +2,7 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from models.receipt import Receipt
+from pos.models.receipt import Receipt
 
 
 class ReceiptRepository:

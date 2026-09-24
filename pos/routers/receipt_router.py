@@ -3,10 +3,10 @@ from uuid import UUID
 from fastapi import APIRouter,Depends,status
 from sqlalchemy.orm import Session
 
-from database import get_db
+from pos.database import get_db
 
-from schemas.receipt import ReceiptCreate,ReceiptUpdate,ReceiptResponse
-from services.receipt_service import receipt_service
+from pos.schemas.receipt import ReceiptCreate,ReceiptUpdate,ReceiptResponse
+from pos.services.receipt_service import receipt_service
 
 
 router=APIRouter(prefix="/receipts",tags=["Receipts"])

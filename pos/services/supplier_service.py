@@ -3,8 +3,8 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from repositories.supplier_repository import supplier_repository
-from schemas.supplier import SupplierCreate, SupplierUpdate
+from pos.repositories.supplier_repository import supplier_repository
+from pos.schemas.supplier import SupplierCreate, SupplierUpdate
 
 
 class SupplierService:

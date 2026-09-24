@@ -2,7 +2,7 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from models.sale_item import SaleItem
+from pos.models.sale_item import SaleItem
 
 
 class SaleItemRepository:

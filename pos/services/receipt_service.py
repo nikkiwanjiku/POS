@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import HTTPException,status
 from sqlalchemy.orm import Session
 
-from repositories.receipt_repository import receipt_repository
-from repositories.sale_repository import sale_repository
-from schemas.receipt import ReceiptCreate, ReceiptUpdate
+from pos.repositories.receipt_repository import receipt_repository
+from pos.repositories.sale_repository import sale_repository
+from pos.schemas.receipt import ReceiptCreate, ReceiptUpdate
 
 
 class ReceiptService:

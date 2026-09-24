@@ -3,11 +3,11 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from database import get_db
+from pos.database import get_db
 
-from schemas.sale import SaleCreate, SaleUpdate, SaleResponse
+from pos.schemas.sale import SaleCreate, SaleUpdate, SaleResponse
 
-from services.sale_service import sale_service
+from pos.services.sale_service import sale_service
 
 
 
