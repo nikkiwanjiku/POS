@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from pos.database import get_db
+from pos.dependencies import get_current_user
 from pos.schemas.product import ProductCreate, ProductUpdate, ProductResponse
 from pos.services.product_service import product_service
 
@@ -12,7 +13,7 @@ router = APIRouter(prefix="/products", tags=["Products"])
 
 
 @router.get("/", response_model=list[ProductResponse], status_code=status.HTTP_200_OK)
-def get_products(db: Session = Depends(get_db)):
+def get_products(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     return product_service.list_products(db)
 
 

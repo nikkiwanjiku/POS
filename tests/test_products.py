@@ -223,10 +223,10 @@ def test_create_product_with_invalid_price_type(client):
     assert response.status_code == 422
 
 
-def test_list_products(client):
-    first_product = create_product(client)
+def test_list_products(authenticated_client):
+    first_product = create_product(authenticated_client)
 
-    category = create_category(client)
+    category = create_category(authenticated_client)
 
     second_payload = product_payload(
         category_id=category["category_id"],
@@ -235,14 +235,14 @@ def test_list_products(client):
     second_payload["product_name"] = "Monitor"
     second_payload["barcode"] = "MONITOR001"
 
-    second_response = client.post(
+    second_response = authenticated_client.post(
         "/products/",
         json=second_payload,
     )
 
     assert second_response.status_code == 201
 
-    response = client.get("/products/")
+    response = authenticated_client.get("/products/")
 
     assert response.status_code == 200
 
@@ -401,3 +401,26 @@ def test_delete_product_with_invalid_uuid(client):
     response = client.delete("/products/not-a-valid-uuid")
 
     assert response.status_code == 422
+
+
+def test_list_products_without_token(client):
+    response = client.get("/products/")
+
+    assert response.status_code == 401
+
+
+def test_list_products_with_invalid_token(client):
+    client.headers.update(
+        {"Authorization": "Bearer invalid-token"}
+    )
+
+    response = client.get("/products/")
+
+    assert response.status_code == 401
+
+
+def test_list_products_with_valid_token(authenticated_client):
+    response = authenticated_client.get("/products/")
+
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
