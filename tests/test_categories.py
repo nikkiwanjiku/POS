@@ -55,8 +55,8 @@ def test_create_category_with_invalid_data_type(client):
     assert response.status_code in (201, 422)
 
 
-def test_list_categories(client):
-    client.post(
+def test_list_categories(authenticated_client):
+    authenticated_client.post(
         "/categories/",
         json={
             "category_name": "Electronics",
@@ -64,7 +64,7 @@ def test_list_categories(client):
         },
     )
 
-    client.post(
+    authenticated_client.post(
         "/categories/",
         json={
             "category_name": "Clothing",
@@ -72,7 +72,7 @@ def test_list_categories(client):
         },
     )
 
-    response = client.get("/categories/")
+    response = authenticated_client.get("/categories/")
 
     assert response.status_code == 200
 
@@ -189,3 +189,26 @@ def test_delete_missing_category(client):
 
     assert response.status_code == 404
     assert response.json()["detail"] == "Category not found"
+
+
+def test_list_categories_without_token(client):
+    response = client.get("/categories/")
+
+    assert response.status_code == 401
+
+
+def test_list_categories_with_invalid_token(client):
+    client.headers.update(
+        {"Authorization": "Bearer invalid-token"}
+    )
+
+    response = client.get("/categories/")
+
+    assert response.status_code == 401
+
+
+def test_list_categories_with_valid_token(authenticated_client):
+    response = authenticated_client.get("/categories/")
+
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)

@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from pos.database import get_db
+from pos.dependencies import get_current_user
 from pos.schemas.category import CategoryCreate, CategoryUpdate, CategoryResponse
 from pos.services.category_service import category_service
 
@@ -12,7 +13,7 @@ router = APIRouter(prefix="/categories", tags=["Categories"])
 
 
 @router.get("/", response_model=list[CategoryResponse], status_code=status.HTTP_200_OK)
-def get_categories(db: Session = Depends(get_db)):
+def get_categories(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     return category_service.list_categories(db)
 
 
